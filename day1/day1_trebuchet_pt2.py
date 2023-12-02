@@ -1,24 +1,15 @@
-numbers = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'}
+numbers = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+
 
 def trebuchet(input_file):
-    final2 = []
-    s = []
+    total = 0
     with open(input_file, 'r', encoding='UTF-8') as file:
         for line in file:
             final = []
-            temp = line.strip('\n')
-            for word, value in numbers.items():
-                temp = temp.replace(word, value)
-            # if temp.strip().isdigit():
-            final.append(temp)
-            s = []
-            for i in range(len(final)):
-                for j in final[i]:
-                    if j.isdigit():
-                        s.append(int(j))
-            final2.append(s[0] * 10 + s[0]) if len(s) == 1 else final2.append(s[0] * 10 + s[-1])
-        print(final2)
-    total = sum(final2[k] for k in range(len(final2)))
-    print(total)
-
-trebuchet('test.txt')
+            for i, number in enumerate(numbers):
+                if number in line:
+                    line = line.replace(number, f'{number[0]}{i+1}{number[-1]}')
+            num = [int(char) for char in line if char.rstrip().isdigit()]
+            final.append(num[0] * 10 + num[0]) if len(num) == 1 else final.append(num[0] * 10 + num[-1])
+            total += sum([k for k in final])
+    return total
