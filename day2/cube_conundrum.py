@@ -15,3 +15,4 @@ def conundrum(input_file):
                     break
             if valid:
                 total += i+1
+    return total
