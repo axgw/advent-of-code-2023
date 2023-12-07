@@ -13,6 +13,6 @@ def conundrum(input_file):
                     red = game_dict.get('red')
                 if game_dict.get('green', 0) > green:
                     green = game_dict.get('green')
-            power = red*blue*green
+            power = red * blue * green
             total += power
-    return total
+        return total
